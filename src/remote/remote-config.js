@@ -1,7 +1,6 @@
 import remote from ".";
 import { getToken } from "@/local-storage";
 import router from "@/router";
-import { LOGIN_PATH } from "@/const"
 import { ElLoading, ElNotification } from "element-plus";
 import { ref, unref } from "vue";
 const JAVA_SUCCESS_CODE = "1";
@@ -39,24 +38,7 @@ remote.init({
           reject(axiosResponse.data.msg);
         }
       } else {
-        //Token 过期
-        if (axiosResponse.status === 401) {
-          router
-            .replace({
-              path: LOGIN_PATH,
-              query: {
-                redirect: router.currentRoute.value.fullPath,
-              },
-            })
-            .then((res) => {
-              console.log(res);
-            });
-        }
-        ElNotification({
-          message: axiosResponse.data.msg || axiosResponse.statusText,
-          type: "error",
-        });
-        reject(axiosResponse);
+        reject(axiosResponse.data)
       }
     });
   },

@@ -6,8 +6,12 @@ const routes = [
 	{
 		path: '/',
 		name: "Home",
-		redirect: "dashboard",
-		component: () => import("@/pages/home.vue"),
+		component: () => import("@/pages/dashboard-maker.vue"),
+	},
+	{
+		path: '/draggable',
+		name: "Home",
+		component: () => import("@/pages/dashboard-maker-draggable.vue"),
 	},
 ]
 
